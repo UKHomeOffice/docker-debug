@@ -5,7 +5,7 @@ pipeline:
     environment:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
-      - docker build --build-arg DRONE_REPO_LINK=$${DRONE_REPO_LINK} --build-arg DRONE_REMOTE_URL=$${DRONE_REMOTE_URL} --build-arg DRONE_COMMIT_REF=$${DRONE_COMMIT_REF} --build-arg DRONE_COMMIT_SHA=$${DRONE_COMMIT_SHA} --build-arg DRONE_BUILD_CREATED=$${DRONE_BUILD_CREATED} --build-arg DRONE_BUILD_NUMBER=$${DRONE_BUILD_NUMBER} -t githelper .
+      - docker build --build-arg DRONE_REPO_LINK=$${DRONE_REPO_LINK} --build-arg DRONE_REMOTE_URL=$${DRONE_REMOTE_URL} --build-arg DRONE_COMMIT_REF=$${DRONE_COMMIT_REF} --build-arg DRONE_COMMIT_SHA=$${DRONE_COMMIT_SHA} --build-arg DRONE_BUILD_CREATED=$${DRONE_BUILD_CREATED} --build-arg DRONE_BUILD_NUMBER=$${DRONE_BUILD_NUMBER} -t docker-debug .
     when:
       branch:
       event: [tag,push]
@@ -18,10 +18,10 @@ pipeline:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
       - docker login -u="ukhomeofficedigital+borders_central" -p=$${DOCKER_PASSWORD} quay.io
-      - docker tag githelper quay.io/ukhomeofficedigital/githelper:$${DRONE_COMMIT_SHA}
-      - docker tag githelper quay.io/ukhomeofficedigital/githelper:latest
-      - docker push quay.io/ukhomeofficedigital/githelper:$${DRONE_COMMIT_SHA}
-      - docker push quay.io/ukhomeofficedigital/githelper:latest
+      - docker tag docker-debug quay.io/ukhomeofficedigital/docker-debug:$${DRONE_COMMIT_SHA}
+      - docker tag docker-debug quay.io/ukhomeofficedigital/docker-debug:latest
+      - docker push quay.io/ukhomeofficedigital/docker-debug:$${DRONE_COMMIT_SHA}
+      - docker push quay.io/ukhomeofficedigital/docker-debug:latest
     when:
       event: [push]
       local: false
@@ -34,8 +34,8 @@ pipeline:
       - DOCKER_HOST=tcp://172.17.0.1:2375
     commands:
       - docker login -u="ukhomeofficedigital+borders_central" -p=$${DOCKER_PASSWORD} quay.io
-      - docker tag githelper quay.io/ukhomeofficedigital/githelper:$${DRONE_TAG}
-      - docker push quay.io/ukhomeofficedigital/githelper:$${DRONE_TAG}
+      - docker tag docker-debug quay.io/ukhomeofficedigital/docker-debug:$${DRONE_TAG}
+      - docker push quay.io/ukhomeofficedigital/docker-debug:$${DRONE_TAG}
     when:
       event: [tag]
       local: false
