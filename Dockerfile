@@ -1,6 +1,6 @@
 FROM alpine:latest
 ENTRYPOINT ["/entrypoint.sh"]
-EXPOSE 22
+EXPOSE 2222
 COPY entrypoint.sh  /entrypoint.sh
 
 RUN apk add --no-cache openssh ca-certificates curl bash tcpdump
