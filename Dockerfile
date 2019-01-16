@@ -10,5 +10,5 @@ ADD https://github.com/pixie79.keys /home/pixie79/.ssh/authorized_keys
 RUN \
   chmod +x entrypoint.sh && \
   adduser -D -s /bin/bash pixie79 && \
-  passwd -u sickp && \
+  passwd -u pixie79 && \
   chown -R pixie79:pixie79 /home/pixie79 
