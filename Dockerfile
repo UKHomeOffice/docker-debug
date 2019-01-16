@@ -11,6 +11,6 @@ RUN \
   chmod +x entrypoint.sh && \
   adduser -D -s /bin/bash user && \
   passwd -u user && \
-  chown -R user:user /home/user 
+  chown -R user:user /home/user /etc/ssh/
 
 USER 1000
