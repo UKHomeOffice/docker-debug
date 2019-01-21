@@ -7,10 +7,12 @@ COPY entrypoint.sh  /entrypoint.sh
 RUN apk add --no-cache openssh ca-certificates curl bash 
 
 ADD https://github.com/pixie79.keys /home/node/.ssh/authorized_keys
-COPY server.js /server.js
+COPY inidex.html /index.html
 
 RUN \
   chmod +x entrypoint.sh && \
-  chown -R node:node /home/node /etc/ssh/
+  npm install http-server -g && \
+  touch /run/sshd.pid && \
+  chown -R node:node /home/node /etc/ssh/ /run/sshd.pid
 
 USER 1000
