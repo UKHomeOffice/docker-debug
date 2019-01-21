@@ -7,7 +7,7 @@ COPY entrypoint.sh  /entrypoint.sh
 RUN apk add --no-cache openssh ca-certificates curl bash 
 
 ADD https://github.com/pixie79.keys /home/node/.ssh/authorized_keys
-COPY inidex.html /index.html
+COPY index.html /index.html
 
 RUN \
   chmod +x entrypoint.sh && \
